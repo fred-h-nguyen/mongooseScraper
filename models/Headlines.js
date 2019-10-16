@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const HeadlineSchema = new Schema({
     //headline of the article
-    headline:{
+    title:{
         type:String,
         required:true
     },
@@ -17,6 +17,10 @@ const HeadlineSchema = new Schema({
     summary:{
         type: String,
         required:true,
+    },
+    saved:{
+        type:Boolean,
+        default:false
     },
     note:{
         type: Schema.Types.ObjectId,
