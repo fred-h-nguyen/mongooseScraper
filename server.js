@@ -1,22 +1,30 @@
-//importing express
-import express from 'express';
+//Requiring npm packages
+var express = require("express");
+var exphbs = require("express-handlebars")
 
-// setting the port
-const PORT = process.env.PORT || 3000;
+//creating app instance
+var app = express();
+var PORT = process.env.PORT || 3000;
 
-// creatng the express app instance
-const app = express();
+// Middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static("public"));
 
-//setting up the router
-const router = express.router();
+// Handlebars
+app.engine("handlebars",exphbs({
+        defaultLayout: "main"
+    })
+);
+app.set("view engine", "handlebars");
 
-//making the public folder our static directory
-app.use.apply(express.static(`${__dirname}/public`));
-
-//send all request through the router
-app.use(router);
-
-//listening on the port
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`)
+//Listening on the port
+app.listen(PORT, function () {
+    console.log(
+        "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT
+    );
 });
+
+module.exports = app;
