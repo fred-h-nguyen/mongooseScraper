@@ -12,12 +12,9 @@ module.exports = {
             })
     },
     save: function (note, headline, cb) {
-        const newNote = {
-            body: note
-        }
-        db.Note.create(newNote)
+        db.Note.create(note)
             .then(dbNote => {
-                return db.Headline.findOneAndUpdate(headline, { not: dbNote._id }, { new: true });
+                return db.Headline.findOneAndUpdate(headline, { note: dbNote._id }, { new: true });
             })
             .then(dbHeadline => {
                 cb(dbHeadline);
