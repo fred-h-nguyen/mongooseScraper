@@ -3,7 +3,7 @@ const db = require('../models');
 module.exports = {
     get: function (queryHeadline, cb) {
         db.Headline.findOne(queryHeadline)
-            .populate('note')
+            .populate('notes')
             .then(headline => {
                 cb(headline)
             })
