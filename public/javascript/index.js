@@ -1,18 +1,18 @@
 $(document).ready(() => {
 
-    const articleDiv = $('.article-div');
+    var articleDiv = $('.article-div');
     $(document).on('click', '.btn.save', saveArticle);
-    $(document).on('click','.scrape',scrape);
+    $(document).on('click','.scrape-new',scrape);
 
 
-    const renderArticles = articles => {
-        const articleCards = articles.map(article => createCard(article));
+    var renderArticles = articles => {
+        var articleCards = articles.map(article => createCard(article));
         articleDiv.append(articleCards);
     }
 
-    const createCard = article => {
-        const card = $('<div class="card">');
-        const header = $('<div class="card-header">').append(
+    var createCard = article => {
+        var card = $('<div class="card">');
+        var header = $('<div class="card-header">').append(
             $('<h3>').append(
                 $('<a class = "article-link" target="blank">')
                     .attr('href', article.link)
@@ -22,14 +22,14 @@ $(document).ready(() => {
             )
         )
 
-        const body = $('<div class="card-body">').text(article.summary);
+        var body = $('<div class="card-body">').text(article.summary);
         card.append(header, body)
         card.data('_id', article._id);
         return card
     }
 
-    const renderEmpty = ()=>{
-       const emptyAlert = $(
+    var renderEmpty = ()=>{
+       var emptyAlert = $(
             [
               "<div class='alert alert-warning text-center'>",
               "<h4>Uh Oh. Looks like we don't have any new articles.</h4>",
@@ -48,8 +48,8 @@ $(document).ready(() => {
           // Appending this data to the page
           articleDiv.append(emptyAlert);
     }
-    const saveArticle = () => {
-        const article = $(this).parents('.card').data();
+    var saveArticle = () => {
+        var article = $(this).parents('.card').data();
 
         $(this).parent('.card').remove();
 
@@ -65,13 +65,13 @@ $(document).ready(() => {
         })
     }
 
-    const scrape = ()=>{
+    var scrape = ()=>{
         $.get('api/scrape').then(data =>{
             initPage();
         })
     }
 
-    const initPage = () => {
+    var initPage = () => {
         $.get('/api/headlines?saved=false').then(data=>{
             articleDiv.empty();
             if (data && data.length){
