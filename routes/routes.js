@@ -22,7 +22,7 @@ module.exports = app => {
     });
 
     app.get('/api/headlines', (req, res) => {
-        const query = {}
+        let query = {}
         if (req.query.saved) {
             query = req.query;
         }

@@ -1,9 +1,5 @@
-$(document).ready(() => {
+$(document).ready(function () {
     var articleDiv = $('article-div');
-    $(document).on('click', '.btn.delete', deleteArticle);
-    $(document).on('click', '.btn.notes', viewNotes);
-    $(document).on('click', '.btn.save', saveNote);
-    $(document).on('click', '.btn.delete-note', deleteNote);
 
     var initPage = () => {
         $.get('/api/headlines?saved=true').then(data => {
@@ -145,4 +141,8 @@ $(document).ready(() => {
                 bootbox.hideAll();
             })
     }
+    $(document).on('click', '.btn.delete', deleteArticle);
+    $(document).on('click', '.btn.notes', viewNotes);
+    $(document).on('click', '.btn.save', saveNote);
+    $(document).on('click', '.btn.delete-note', deleteNote);
 });

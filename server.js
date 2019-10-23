@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
@@ -24,7 +24,7 @@ app.set('view engine', 'handlebars');
 const db = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadline'
 
 //connecting to the database
-mongoose.connect(db,{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(db,{useNewUrlParser:true})
 //routes
 require('./routes/routes')(app);
 
