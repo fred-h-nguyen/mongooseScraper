@@ -32,8 +32,8 @@ const scrape = cb => {
 
                     if (title && link && summary) {
                         //create an object headline if all items exist;
-                        title = title.replace(/(r\n|\n|\r|\t|\s+)/gm, '').trim();
-                        summary = summary.replace(/(r\n|\n|\r|\t|\s+)/gm, '').trim();
+                        title = title.replace(/(r\n|\n|\r|\t|\s+)/gm, ' ').trim();
+                        summary = summary.replace(/(r\n|\n|\r|\t|\s+)/gm, ' ').trim();
 
 
                         headline.title = title;
